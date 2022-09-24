@@ -2,7 +2,7 @@
 
     function add_product($image, $nom, $prix, $desc) {
         if(require("connexion.php")) {
-            $req = $access->prepare("INSERT INTO produits (image, nom, prix, description) VALUES ($image, $nom, $prix, $desc)");
+            $req = $access->prepare("INSERT INTO produits (image, nom, prix, description) VALUES (?,?,?,?)");
 
             $req->execute(array($image, $nom, $prix, $desc));
 
@@ -26,7 +26,7 @@
 
     function delete_product($id) {
         if(require("connexion.php")) {
-            $req = $access->prepare("DELETE * FROM produits WHERE id=?");
+            $req = $access->prepare("DELETE FROM produits WHERE id=?");
             
             $req->execute(array($id));
         }

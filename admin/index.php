@@ -1,5 +1,33 @@
 <?php require_once('../config/commandes.php');?>
 
+<?php 
+
+    if(isset($_POST['valider'])) {
+        if(isset($_POST['image']) 
+        && isset($_POST['nom']) 
+        && isset($_POST['prix']) 
+        && isset($_POST['desc'])) {
+            if(!empty($_POST['image']) 
+            && !empty($_POST['nom']) 
+            && !empty($_POST['prix']) 
+            && !empty($_POST['desc'])) {
+                $image = htmlspecialchars(strip_tags($_POST['image']));
+                $nom = htmlspecialchars(strip_tags($_POST['nom']));
+                $prix = intval(htmlspecialchars(strip_tags($_POST['prix'])));
+                $desc = htmlspecialchars(strip_tags($_POST['desc']));
+
+                try {
+                    add_product($image, $nom, $prix, $desc);
+                } 
+                catch(Exception $e) {
+                    $e->getMessage();
+                }
+            }
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -50,31 +78,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-<?php 
-
-    if(isset($_POST['valider'])) {
-        if(isset($_POST['image']) 
-        && isset($_POST['nom']) 
-        && isset($_POST['prix']) 
-        && isset($_POST['desc'])) {
-            if(!empty($_POST['image']) 
-            && !empty($_POST['nom']) 
-            && !empty($_POST['prix']) 
-            && !empty($_POST['desc'])) {
-                $image = htmlspecialchars(strip_tags($_POST['image']));
-                $nom = htmlspecialchars(strip_tags($_POST['nom']));
-                $prix = htmlspecialchars(strip_tags($_POST['prix']));
-                $desc = htmlspecialchars(strip_tags($_POST['desc']));
-
-                try {
-                    add_product($image, $nom, $prix, $desc);
-                } 
-                catch(Exception $e) {
-                    $e->getMessage();
-                }
-            }
-        }
-    }
-
-?>
