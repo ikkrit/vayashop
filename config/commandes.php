@@ -1,5 +1,23 @@
 <?php
 
+    function getAdmin($email, $password) {
+        if(require("connexion.php")) {
+            $req = $access->prepare("SELECT * FROM admin WHERE email = ? AND motdepasse = ?");
+
+            $req->execute(array($email, $password));
+
+            if($rep->rowCount() == 1) {
+                $data = $req->fetch();
+
+                return $data;
+            } else {
+                return false;
+            }
+
+            $req->closeCursor();        
+        }
+    }
+
     function add_product($image, $nom, $prix, $desc) {
         if(require("connexion.php")) {
             $req = $access->prepare("INSERT INTO produits (image, nom, prix, description) VALUES (?,?,?,?)");
