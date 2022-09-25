@@ -1,3 +1,15 @@
+<?php 
+    session_start();
+
+    if(!isset($_SESSION['zW45ertfaa'])) {
+        header("Location: ../login.php");
+    }
+
+    if(!empty($_SESSION['zW45ertfaa'])) {
+        header("Location: ../login.php");
+    }
+?>
+
 <?php require_once('../config/commandes.php');?>
 
 <?php 

@@ -4,7 +4,6 @@
     $products = affiche_produit();
 ?>
 
-
 <!doctype html>
 <html lang="fr">
   <head>

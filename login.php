@@ -1,5 +1,6 @@
-<?php include 'config/commandes.php'?>
 <?php session_start()?>
+<?php include 'config/commandes.php'?>
+
 
 <?php
     if(isset($_POST['envoyer'])) {
